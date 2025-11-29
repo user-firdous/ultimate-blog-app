@@ -1,11 +1,12 @@
 import express from 'express'
-import { createBlog, getAllBlogs } from '../../controllers/blog.controller.js';
+import { createBlog, getAllBlogs, updateBlog, deleteBlog } from '../../controllers/blog.controller.js';
 const router = express.Router()
 
 
 router
   .post('/', createBlog )
-  .get('/', getAllBlogs );
- 
+  .get('/', getAllBlogs )
+  .put('/:id', updateBlog)
+  .delete('/:id', deleteBlog)
 
 export const blogRouter = router;

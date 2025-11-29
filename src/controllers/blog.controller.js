@@ -28,3 +28,35 @@ export const createBlog = async(req, res) => {
    })
     
 }
+
+export const updateBlog = async(req, res) => {
+    const id = req.params.id
+    const body = req.body
+    const updated = await updateBlogService(id, body)
+    if (!updated) {
+        return res.status(404).json({
+            success: false,
+            message: "Blog not found"
+        })
+    }
+    res.status(200).json({
+        success: true,
+        message: "Blog updated successfully",
+        data: updated
+    })
+}
+
+export const deleteBlog = async(req, res) => {
+    const id = req.params.id
+    const deleted = await deleteBlogService(id)
+    if (!deleted) {
+        return res.status(404).json({
+            success: false,
+            message: "Blog not found"
+        })
+    }
+    res.status(200).json({
+        success: true,
+        message: "Blog deleted successfully"
+    })
+}
